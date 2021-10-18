@@ -24,4 +24,35 @@ let dataset = [
   { x: 81, y: 227, method: "divide" },
 ];
 
-describe("Calculator", () => {});
+// Test itirates through the dataset and runs calculation using the calculator class and manual calculation and compares the values
+ describe("Calculator", () => {
+  dataset.forEach(data => {test(`Calculating ${data.x} ${data.method} ${data.y}`, () => {expect(doCalculation(data.method, data.x, data.y)).toEqual(manualCalculation(data.method, data.x, data.y))})});
+});
+
+// Calculation between x and y using the calcultor class
+function doCalculation(method: string, x: number, y: number): number{
+  switch(method) {
+    case "add":
+      return calculator.add(x, y);
+    case "subtract":
+      return calculator.subtract(x, y);
+    case "multiply":
+      return calculator.multiply(x, y);
+    case "divide":
+      return calculator.divide(x, y);
+  }
+}
+
+// Calcultion between x and y using built in computer math
+function manualCalculation(method: string, x: number, y: number): number{
+  switch(method) {
+    case "add":
+      return x+y
+    case "subtract":
+      return x-y;
+    case "multiply":
+      return x*y;
+    case "divide":
+      return x/y;
+  }
+}
